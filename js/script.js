@@ -26,6 +26,7 @@ BONUS:
 var randomNr = [];
 var points = 0;
 var numbersGuessed = [];
+var guessedNumber;
 
 // generate 5 DIFFERENT numbers and push them in randomNr:
 
@@ -45,9 +46,26 @@ alert("Numeri da ricordare: " + randomNr);
 
 // Set countdown to 30 sec. and after ask the user to guess the previous numbers: 
 
-setTimeout(function () {
+var countdownId = setTimeout(function () {
 
-}, 30000);
+    for (i = 1; i < 6; i++) {
+        guessedNumber = parseInt(prompt("Inserisci i numeri visti in precedenza" + i + "/5"));
+
+        if (randomNr.includes(guessedNumber)) {
+            numbersGuessed.push(guessedNumber);
+            points += 1;
+        }
+    }
+
+    // feedback alert needs to be put here, should pop up AFTER function activates:
+
+    alert("Hai ottenuto: " + points + " punti e indovinato questi numeri: " + numbersGuessed);
+
+    clearTimeout(countdownId);
+}, 5000);
+
+
+
 
 
 // function to generate numbers: (declaration)
